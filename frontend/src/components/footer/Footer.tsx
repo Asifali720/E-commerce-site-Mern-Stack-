@@ -7,8 +7,9 @@ import { FaLinkedinIn } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-full max-w-[1440px] mx-auto px-4 lg:px-10 xl:px-20 mt-20 pt-28 bg-[#f0f0f0] relative">
-      <div className="flex flex-col lg:flex-row justify-between gap-10 md:gap-20 items-center p-10 bg-black rounded-2xl absolute -top-20">
+    <footer className="w-full bg-[#f0f0f0]">
+      <div className="w-full max-w-[1440px] mx-auto px-4 lg:px-10 xl:px-20 mt-20 pt-28 relative">
+        <div className="flex flex-col lg:flex-row justify-between gap-10 md:gap-20 items-center p-10 bg-black rounded-2xl absolute -top-44 md:-top-[210px] lg:-top-20">
         <h3 className="text-white font-Roboto font-bold text-4xl w-full max-w-[700px] ">
           STAY UPTO DATE ABOUT OUR LATEST OFFERS
         </h3>
@@ -120,7 +121,9 @@ const Footer = () => {
         <p className="text-gray-500 text-sm">
           Shop.co © {new Date().getFullYear()}, All Rights Reserved
         </p>
+      </div> 
       </div>
+     
     </footer>
   );
 };
