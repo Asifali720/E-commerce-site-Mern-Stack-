@@ -5,11 +5,15 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import DataProvider from './components/context/DataProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <DataProvider>
+      <BrowserRouter>
     <App />
-    </ BrowserRouter>
+    </ BrowserRouter> 
+    </DataProvider>
+   
   </StrictMode>,
 )
