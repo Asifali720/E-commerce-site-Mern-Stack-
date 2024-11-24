@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import clsx from "clsx";
 import logo from "../../assets/SHOP.CO.png";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { FiShoppingCart } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { DataContext, DataProviderProps } from "../context/DataProvider";
 
 const Navbar = () => {
   const [bar, setBar] = useState(true);
-  const [search, setSearch] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [menu, setMenu] = useState(false); 
+  const {setSearch} = useContext(DataContext) as DataProviderProps
+
+  const  handleSearch = (e: any) => {
+    setSearch(e.target.value)
+  }
 
   return( <nav className=" z-50 w-full fixed top-0">
     <div className="relative">
@@ -90,13 +96,13 @@ const Navbar = () => {
           
 
         <div className="w-auto md:w-full flex items-center rounded-full bg-[#f0f0f0] p-2">
-          <button onClick={() => setSearch(!search)}>
+          <button onClick={() => setSearchOpen(!searchOpen)}>
              <CiSearch size={22} />
           </button>
           
-            <input type="text" name="" id="" className="bg-transparent ml-2 outline-none hidden md:block placeholder:text-zinc-500" placeholder="Search"/>
-            <div className={clsx("w-full absolute top-[70px] left-0 bg-[#f0f0f0] px-5 py-2", search ? "block md:hidden" : "hidden")}>
-            <input type="text" name="" id="" className="bg-white ml-2 outline-none rounded-full w-full px-3 py-1" placeholder="Search"/>
+            <input type="text" onChange={handleSearch} name="" id="" className="bg-transparent ml-2 outline-none hidden md:block placeholder:text-zinc-500" placeholder="Search"/>
+            <div className={clsx("w-full absolute top-[70px] left-0 bg-[#f0f0f0] px-5 py-2", searchOpen ? "block md:hidden" : "hidden")}>
+            <input type="text" onChange={handleSearch} name="" id="" className="bg-white ml-2 outline-none rounded-full w-full px-3 py-1" placeholder="Search"/>
             </div>
         </div>
         <div className="flex items-center gap-2"> 

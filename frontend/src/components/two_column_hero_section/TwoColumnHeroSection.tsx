@@ -2,6 +2,7 @@ import React from "react";
 import sideImage from "../../assets/two_column_image.png";
 import CountUp from "react-countup";
 import sideImageMobile from "../../assets/two_column_hero_mobile.png";
+import Button from "../button/Button";
 
 const TwoColumnHeroSection = () => {
   return (
@@ -12,7 +13,7 @@ const TwoColumnHeroSection = () => {
         alt=""
         className="absolute top-0 right-0 w-full h-full -z-10 object-cover hidden md:block"
       />
-      <div className="pt-10 lg:py-20 w-full md:max-w-[700px]">
+      <div className="pt-10 lg:py-20 w-full md:max-w-[700px] relative z-30">
         <h1 className="text-4xl md:text-7xl tracking-[-0.05em] font-Roboto text-black font-extrabold mb-6">
           FIND CLOTHES THAT MATCHES YOUR STYLE
         </h1>
@@ -21,9 +22,7 @@ const TwoColumnHeroSection = () => {
           designed to bring out your individuality and cater to your sense of
           style.
         </p>
-        <button className="bg-black text-white py-3 px-20 rounded-full font-satoshi font-medium text-base mt-6">
-          Shop Now
-        </button>
+        <Button variant="primary" label="Shop Now"  className="w-full md:w-auto mt-6"/>
         <div className="mt-10 flex flex-wrap items-center gap-20">
           <div className="text-base text-gray-500 font-satoshi">
             <p className="text-3xl lg:text-5xl  font-satoshi text-black font-bold">

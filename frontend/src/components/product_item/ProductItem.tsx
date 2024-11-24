@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { Rating } from 'react-simple-star-rating'
+import { Link } from 'react-router-dom'
 
-const ProductItem = ({name, image, price, rating, currency}: {name: string, image: string, price: number, rating: number, currency: string}) => {
+const ProductItem = ({name, image, price, currency, _id}: {name: string, image: string, price: number, rating: number, currency: string, _id:string}) => {
    
   return (
-    <div className='w-full group'>                
-    <img src={image} alt="" className='w-full rounded-2xl group-hover:scale-110 transition-all ease-in-out duration-300 mb-1'/>
-    <p className='text-lg font-bold font-satoshi text-black'>{name}</p>
-    {/* <Rating  initialValue={5}  /> */}
-    <span className='text-base font-satoshi text-black block font-bold'>{price} {currency}</span>
-</div>
+    <Link to={`/products/${_id}`} className='w-full group' key={_id}>
+    <img src={image[0]} alt="" className='w-full rounded-2xl group-hover:scale-110 transition-all ease-in-out duration-300 mb-1'/>           
+    <p className='text-base font-satoshi  text-black'>{name}</p> 
+    <span className='text-sm font-Roboto text-black block tracking-[-0.05em] font-semibold'>{currency}{price}</span>
+</Link>
   )
 }
 

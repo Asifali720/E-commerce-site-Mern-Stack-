@@ -5,6 +5,8 @@ export interface DataProviderProps {
    products: Array<any>
    currency: string
    delivery_fee: number
+   search : string
+   setSearch: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const DataContext = createContext<DataProviderProps | null>(null)
@@ -12,9 +14,10 @@ export const DataContext = createContext<DataProviderProps | null>(null)
 const DataProvider = ({children}: {children: React.ReactNode}) => {
   const currency = "$"
   const delivery_fee = 10
+  const [search, setSearch] = React.useState<string>("")
 
   return (
-    <DataContext.Provider value={{products, currency, delivery_fee}}>
+    <DataContext.Provider value={{products, currency, delivery_fee, search, setSearch}}>
       {children}
     </DataContext.Provider>
   )

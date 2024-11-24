@@ -1,16 +1,16 @@
-import React from "react";
+
 import { TfiEmail } from "react-icons/tfi";
 import logo from "../../assets/SHOP.CO.png";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa6";
+import Button from "../button/Button";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#f0f0f0]">
-      <div className="w-full max-w-[1440px] mx-auto px-4 lg:px-10 xl:px-20 mt-20 pt-28 relative">
-        <div className="flex flex-col lg:flex-row justify-between gap-10 md:gap-20 items-center p-10 bg-black rounded-2xl absolute -top-44 md:-top-[210px] lg:-top-20">
-        <h3 className="text-white font-Roboto font-bold text-4xl w-full max-w-[700px] ">
+    <footer className="w-full">
+         <div className="flex flex-col lg:flex-row justify-between gap-10 md:gap-20 items-center p-10 bg-black rounded-2xl w-full max-w-[1220px] px-4 lg:px-10 mx-auto -mb-24 relative">
+        <h3 className="text-white font-Roboto font-bold text-4xl w-full max-w-[700px]">
           STAY UPTO DATE ABOUT OUR LATEST OFFERS
         </h3>
         <form>
@@ -22,12 +22,11 @@ const Footer = () => {
               className="w-full bg-transparent outline-none"
             />
           </div>
-          <button className="bg-white text-black py-3 px-4 rounded-full w-full font-satoshi font-medium text-base hover:bg-black hover:text-white border border-transparent hover:border-white">
-            Subcribe to Newsletter
-          </button>
+          <Button variant="secondary" label="Subcribe to Newsletter" type="submit"/>
         </form>
       </div>
-
+      <div className="w-full bg-[#f0f0f0]">
+       <div className="w-full max-w-[1440px] pt-20 mx-auto px-4 lg:px-10 xl:px-20 relative">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-24 py-10 border-b-2 border-b-gray-200">
         <div className="">
           <img src={logo} alt="logo" className="mb-5" />
@@ -122,7 +121,9 @@ const Footer = () => {
           Shop.co © {new Date().getFullYear()}, All Rights Reserved
         </p>
       </div> 
+      </div> 
       </div>
+      
      
     </footer>
   );

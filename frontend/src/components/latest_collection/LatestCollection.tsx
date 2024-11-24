@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { DataContext, DataProviderProps} from '../context/DataProvider'
 import ProductItem from '../product_item/ProductItem'
+import Button from '../button/Button'
 
 
 const LatestCollection = () => {
@@ -24,6 +25,10 @@ console.log(latestCollection, '>...')
               })
              }
           </div>
+          <div className='w-full flex items-center justify-center mt-10'>
+           <Button  variant='tertiary' label='View All' link='/collection'/> 
+          </div>
+          
       </div>
    </section>
   )
