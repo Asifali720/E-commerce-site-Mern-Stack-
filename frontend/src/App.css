@@ -1,5 +1,5 @@
 .nav_height{
-    height: calc(100vh - 110px);
+    height: calc(100vh + 80px);
     @media (min-width: 1024px) {
       height: auto;   
     }

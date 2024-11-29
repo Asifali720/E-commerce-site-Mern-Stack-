@@ -57,7 +57,7 @@ const Navbar = () => {
         </Link>    
         </div>
         
-          <ul className={clsx("flex flex-col lg:flex-row items-center gap-7 lg:gap-5 nav_height absolute top-20 left-0 lg:static w-full lg:w-auto bg-white  lg:bg-transparent py-10 lg:py-0", menu ? "block" : "hidden lg:flex")}>
+          <ul className={clsx("flex flex-col lg:flex-row items-center gap-7 lg:gap-5 nav_height absolute top-[76px] left-0 lg:static w-full lg:w-auto bg-white  lg:bg-transparent py-10 lg:py-0", menu ? "block" : "hidden lg:flex")}>
             <li className="">  
               <Link
                 to="/"
