@@ -1,9 +1,12 @@
 import React from 'react'
 import Layout from '../components/Layout'
+import CartSection from '../components/cart_section/CartSection'
 
 const Cart = () => {
   return (
-    <Layout>Cart</Layout>
+    <Layout>
+      <CartSection/>
+    </Layout>
   )
 }
 

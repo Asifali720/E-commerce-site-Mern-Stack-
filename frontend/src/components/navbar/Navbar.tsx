@@ -13,7 +13,7 @@ const Navbar = () => {
   const [bar, setBar] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
   const [menu, setMenu] = useState(false); 
-  const {setSearch} = useContext(DataContext) as DataProviderProps
+  const {setSearch, cartItems} = useContext(DataContext) as DataProviderProps
 
   const  handleSearch = (e: any) => {
     setSearch(e.target.value)
@@ -106,9 +106,10 @@ const Navbar = () => {
             </div>
         </div>
         <div className="flex items-center gap-2"> 
-        <button>
+        <Link to="/cart" className="relative">
             <FiShoppingCart size={22} />
-        </button>  
+            <p className="text-white absolute -top-2 -right-2 bg-black text-sm rounded-full w-4 h-4 flex items-center justify-center"><span>{cartItems.length}</span></p>
+        </Link>  
           <button>
             <MdOutlineAccountCircle size={22} />
         </button>  

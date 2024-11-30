@@ -1,19 +1,22 @@
 import React, { useContext } from "react";
-import { DataContext, DataProviderProps } from "../context/DataProvider";
-import { useParams } from "react-router-dom";
 import { assets } from "../../data/assets/frontend_assets/assets";
 import Button from "../button/Button";
 import clsx from "clsx";
+import { DataContext, DataProviderProps } from "../context/DataProvider";
 
-const ProductDetailSection = () => {
-  const { id } = useParams();
-  const [product, setProduct] = React.useState<any | null>(null);
-  const [img, setImg] = React.useState<any>("");
+const ProductDetailSection = ({
+  product,
+  img,
+  setImg,
+}: {
+  product: any | null;
+  img: string;
+  setImg: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const [size, setSize] = React.useState<string>("");
-  const [quantity, setQuantity] = React.useState<number>(1);
-
   console.log("🚀 ~ ProductDetailSection ~ product:", product);
-  const { products } = useContext(DataContext) as DataProviderProps;
+  const { addToCart, cartItems, handleQuantity, quantity } = useContext(DataContext) as DataProviderProps;
+  console.log("🚀 ~ cartItems:", cartItems)
 
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const imgRef = React.useRef<HTMLImageElement | null>(null);
@@ -34,23 +37,7 @@ const ProductDetailSection = () => {
     }
   };
 
-  React.useEffect(() => {
-    let product = products.find((item: any) => item._id === id);
-    setProduct(product || {});
-    setImg(product.image[0]);
-  }, [products, id]);
 
-  const handleQuantity = (qnt: number) => {
-    if (qnt < 1) {
-      setQuantity(1);
-      return;
-    }
-    if (qnt > 10) {
-      setQuantity(10);
-      return;
-    }
-    setQuantity(qnt);
-  };
 
   return (
     <section className="w-full mb-20 mt-[140px]" id="product_detail_section">
@@ -65,7 +52,9 @@ const ProductDetailSection = () => {
                       <button
                         className={clsx(
                           "md:h-[167px] w-full h-[100px] md:w-[152px] border rounded-xl md:rounded-3xl overflow-hidden",
-                          image === img ? " border-gray-600": "border-transparent"
+                          image === img
+                            ? " border-gray-600"
+                            : "border-transparent"
                         )}
                         onClick={() => setImg(image)}
                       >
@@ -136,8 +125,11 @@ const ProductDetailSection = () => {
                   ))}
                 </div>
               </div>
-
-              <div className="w-full flex gap-3 mt-24 md:mt-[130px]">
+              <p className="mt-6 font-Roboto font-semibold text-gray-400">
+                100% Original product.<br/> Cash on delivery is available on this
+                product.<br/> Easy return and exchange policy within 7 days.
+              </p>
+              <div className="w-full flex gap-3 mt-24 md:mt-20">
                 <div className="py-2 px-4 bg-gray-200 flex items-center gap-3 md:gap-7 rounded-full">
                   <button
                     className="text-2xl"
@@ -157,6 +149,7 @@ const ProductDetailSection = () => {
                   variant="primary"
                   label="Add to Cart"
                   className="w-full text-nowrap"
+                  onClick={()=>addToCart(product._id, size, quantity)}
                 />
               </div>
             </div>
