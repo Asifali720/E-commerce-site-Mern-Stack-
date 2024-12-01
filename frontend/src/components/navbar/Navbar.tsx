@@ -68,7 +68,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/about"
+                to="/#"
                 className="text-black font-satoshi text-2xl lg:text-base  hover:underline"
               >
                 About

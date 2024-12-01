@@ -14,9 +14,8 @@ const ProductDetailSection = ({
   setImg: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const [size, setSize] = React.useState<string>("");
-  console.log("🚀 ~ ProductDetailSection ~ product:", product);
-  const { addToCart, cartItems, handleQuantity, quantity } = useContext(DataContext) as DataProviderProps;
-  console.log("🚀 ~ cartItems:", cartItems)
+  const { addToCart, handleQuantity, quantity } = useContext(DataContext) as DataProviderProps;
+ 
 
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const imgRef = React.useRef<HTMLImageElement | null>(null);
@@ -149,7 +148,7 @@ const ProductDetailSection = ({
                   variant="primary"
                   label="Add to Cart"
                   className="w-full text-nowrap"
-                  onClick={()=>addToCart(product._id, size, quantity)}
+                  onClick={()=>addToCart(product._id, size, quantity, product.name, product.image[0], product.price)}
                 />
               </div>
             </div>
