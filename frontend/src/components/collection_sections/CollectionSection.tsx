@@ -73,7 +73,7 @@ const CollectionSection = () => {
 
 
   return (
-    <section className="mb-10 mt-[140px] lg:mb-20" id="collection_section">
+    <section className="mb-10 mt-10 lg:mb-20" id="collection_section">
       <div className="w-full max-w-[1440px] mx-auto flex flex-col sm:flex-row px-4 lg:px-10 xl:px-20 gap-6 md:gap-10 items-start justify-center">
           <button onClick={() => setShow(!show)} className="w-full font-satoshi font-bold text-xl p-2 border rounded-2xl border-gray-300 justify-between sm:hidden flex items-center gap-2"><span>Filters</span><IoChevronDownCircleOutline  className={clsx("transition-all ease-in-out duration-300", show ? "rotate-180" : 'rotate-0')}/></button>
         <div className={clsx("w-full sm:w-1/4 transition-all ease-in-out duration-300 md:p-10 h-0 overflow-hidden border border-gray-300 rounded-2xl  sm:h-auto", show ? "h-auto p-6": 'h-0 p-0 sm:p-6')}>

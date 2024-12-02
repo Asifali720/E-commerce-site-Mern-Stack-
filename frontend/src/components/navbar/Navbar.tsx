@@ -19,7 +19,7 @@ const Navbar = () => {
     setSearch(e.target.value)
   }
 
-  return( <nav className=" z-50 w-full fixed top-0">
+  return( <nav className=" z-50 w-full sticky top-0">
     <div className="relative">
        <div
         className={clsx(

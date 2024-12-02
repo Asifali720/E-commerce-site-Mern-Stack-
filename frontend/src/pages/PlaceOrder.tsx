@@ -1,8 +1,12 @@
 import React from 'react'
+import Layout from '../components/Layout'
+import PlaceOrderSection from '../components/place_order_section/PlaceOrderSection'
 
 const PlaceOrder = () => {
   return (
-    <div>PlaceOrder</div>
+    <Layout>
+      <PlaceOrderSection/>
+    </Layout>
   )
 }
 

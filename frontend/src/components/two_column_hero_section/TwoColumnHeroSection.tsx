@@ -6,7 +6,7 @@ import Button from "../button/Button";
 
 const TwoColumnHeroSection = () => {
   return (
-    <section className=" bg-[#f0f0f0] mt-20 lg:mt-[100px] -z-20 relative w-full" id="two_column_hero">
+    <section className=" bg-[#f0f0f0] -z-20 relative w-full" id="two_column_hero">
       <div className="w-full max-w-[1440px] mx-auto px-4 lg:px-10 xl:px-20 pt-10 lg:py-10 md:py-20 relative" >
       <img
         src={sideImage}

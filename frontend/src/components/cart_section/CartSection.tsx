@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DataContext, DataProviderProps } from "../context/DataProvider";
 import { MdDeleteSweep } from "react-icons/md";
-import Button from "../button/Button";
+import CartTotal from "../cart_total/CartTotal";
 
 const CartSection = () => {
   const { currency, cartItems, delivery_fee, handleUpdateQuantity, handleDeleteCartItem } =
@@ -22,7 +22,7 @@ const CartSection = () => {
 
   return (
     <section
-      className="w-full mt-[140px] mb-20 max-w-[1440px] mx-auto px-4 lg:px-10 xl:px-20"
+      className="w-full mt-10 mb-20 max-w-[1440px] mx-auto px-4 lg:px-10 xl:px-20"
       id="cart_section"
     >
       <h1 className="text-4xl font-Roboto tracking-[-0.05em] text-black font-extrabold mb-6">
@@ -75,7 +75,7 @@ const CartSection = () => {
             </div>
           ))}
         </div>
-        <div className="w-full md:w-[40%] p-6 rounded-2xl border border-gray-300">
+        {/* <div className="w-full md:w-[40%] p-6 rounded-2xl border border-gray-300">
           <h3 className="font-satoshi text-2xl font-bold mb-4">
             Order Summary
           </h3>
@@ -107,9 +107,10 @@ const CartSection = () => {
             label="Go to Checkout"
             variant="primary"
             className="w-full text-nowrap text-center"
-            link="/orders"
+            link="/place-order"
           />
-        </div>
+        </div> */}
+        <CartTotal totalPrice={totalPrice} delivery_fee={delivery_fee} currency={currency} label="Go to Checkout" link="/place-order" isPlaceOrder={false} classname="md:w-[40%]"/>
       </div>
     </section>
   );

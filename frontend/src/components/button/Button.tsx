@@ -23,7 +23,7 @@ const Button = ({
         variant === "primary" &&
           "text-white bg-black py-3 px-20 rounded-full font-satoshi transition-all ease-in-out duration-300 font-medium text-base border border-transparent hover:border-black hover:bg-white hover:text-black",
         variant === "secondary" &&
-          "bg-white text-black py-3 px-20 rounded-full font-satoshi transition-all ease-in-out duration-300 font-medium text-base border border-transparent hover:border-white hover:bg-black hover:text-white",
+          "bg-white text-black py-3 px-10 lg:px-6 xl:px-20 rounded-full font-satoshi transition-all ease-in-out duration-300 font-medium text-base border border-transparent hover:border-white hover:bg-black hover:text-white",
         variant === "tertiary" &&
           "text-black py-3 px-20 rounded-full font-satoshi transition-all ease-in-out duration-300 font-medium text-base border border-gray-400 hover:border-black hover:bg-black hover:text-white",
         className

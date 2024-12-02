@@ -39,7 +39,7 @@ const ProductDetailSection = ({
 
 
   return (
-    <section className="w-full mb-20 mt-[140px]" id="product_detail_section">
+    <section className="w-full mb-20 mt-10" id="product_detail_section">
       <div className="w-full max-w-[1440px] mx-auto px-4 lg:px-10 xl:px-20">
         {product && (
           <div className="flex flex-col lg:flex-row gap-5 items-start">

@@ -1,6 +1,7 @@
 import React, { createContext } from "react";
 import { products } from "../../data/assets/frontend_assets/assets.ts";
 import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 export interface DataProviderProps {
   products: Array<any>;
@@ -25,6 +26,11 @@ export interface DataProviderProps {
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
   handleUpdateQuantity: (qnt: number, id: string) => void;
   handleDeleteCartItem: (id: string)=>void
+  paymentMethod: string
+  setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
+  order: object;
+  setOrder: React.Dispatch<React.SetStateAction<object>>;
+  handleOrder: (order: object)=>void;
 }
 
 export const DataContext = createContext<DataProviderProps | null>(null);
@@ -36,6 +42,8 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [openReviews, setOpenReviews] = React.useState<boolean>(false);
   const [cartItems, setCartItems] = React.useState<any>([]);
   const [quantity, setQuantity] = React.useState<number>(1);
+  const [paymentMethod, setPaymentMethod] = React.useState<string>("cod")
+  const [order, setOrder] = React.useState<object>({})
 
   const addToCart = (
     id: string,
@@ -108,7 +116,13 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
       draggable: true,
       progress: undefined,
     })
- } 
+ }
+ 
+ const handleOrder=(order: object) => {
+   console.log("🚀 ~ handleOrder ~ order:", order)
+  //  return <Navigate to={"/orders"}/>
+    
+ }
   
 
   return (
@@ -128,7 +142,12 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
         handleQuantity,
         setQuantity,
         handleUpdateQuantity,
-        handleDeleteCartItem
+        handleDeleteCartItem,
+        paymentMethod,
+        setPaymentMethod,
+        setOrder,
+        order,
+        handleOrder
       }}
     >
       {children}

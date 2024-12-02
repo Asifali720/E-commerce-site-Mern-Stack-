@@ -9,11 +9,11 @@ import Button from "../button/Button";
 const Footer = () => {
   return (
     <footer className="w-full">
-         <div className="flex flex-col lg:flex-row justify-between gap-10 md:gap-20 items-center p-10 bg-black rounded-2xl w-full max-w-[1220px] px-4 lg:px-10 mx-auto -mb-24 relative">
+         <div className="flex flex-col md:flex-row justify-between gap-10 xl:gap-20 items-center p-10 bg-black rounded-2xl w-full max-w-[1220px] px-4 lg:px-10 mx-auto -mb-24 relative">
         <h3 className="text-white font-Roboto font-bold text-4xl w-full max-w-[700px]">
           STAY UPTO DATE ABOUT OUR LATEST OFFERS
         </h3>
-        <form>
+        <form className="w-full md:w-auto">
           <div className="w-full rounded-full flex gap-2 items-center bg-white p-3 mb-2">
             <TfiEmail size={22} />
             <input
@@ -22,7 +22,7 @@ const Footer = () => {
               className="w-full bg-transparent outline-none"
             />
           </div>
-          <Button variant="secondary" label="Subcribe to Newsletter" type="submit"/>
+          <Button variant="secondary" label="Subcribe to Newsletter" type="submit" className="w-full"/>
         </form>
       </div>
       <div className="w-full bg-[#f0f0f0]">
