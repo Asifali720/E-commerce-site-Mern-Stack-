@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { products } from "../../data/assets/frontend_assets/assets.ts";
-import { toast } from "react-toastify";
-import { Navigate } from "react-router-dom";
+import { toast, ToastOptions } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export interface DataProviderProps {
   products: Array<any>;
@@ -25,12 +25,22 @@ export interface DataProviderProps {
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
   handleUpdateQuantity: (qnt: number, id: string) => void;
-  handleDeleteCartItem: (id: string)=>void
-  paymentMethod: string
+  handleDeleteCartItem: (id: string) => void;
+  paymentMethod: string;
   setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
-  order: object;
-  setOrder: React.Dispatch<React.SetStateAction<object>>;
-  handleOrder: (order: object)=>void;
+  order: any;
+  // setOrder: React.Dispatch<React.SetStateAction<object>>;
+  handleOrder: (formData: object, total: number) => void;
+}
+
+interface ToastStyleProp extends ToastOptions {
+  position: string | any;
+  autoClose: number;
+  hideProgressBar: boolean;
+  closeOnClick: boolean;
+  pauseOnHover: boolean;
+  draggable: boolean;
+  progress: undefined;
 }
 
 export const DataContext = createContext<DataProviderProps | null>(null);
@@ -42,8 +52,22 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [openReviews, setOpenReviews] = React.useState<boolean>(false);
   const [cartItems, setCartItems] = React.useState<any>([]);
   const [quantity, setQuantity] = React.useState<number>(1);
-  const [paymentMethod, setPaymentMethod] = React.useState<string>("cod")
-  const [order, setOrder] = React.useState<object>({})
+  const [paymentMethod, setPaymentMethod] = React.useState<string>("cod");
+  const [order, setOrder] = React.useState<any>({
+    cartItems: "",
+  });
+  const navigate = useNavigate();
+  const date = new Date();
+
+  const toastStyle: ToastStyleProp = {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
 
   const addToCart = (
     id: string,
@@ -55,27 +79,11 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
   ) => {
     const carts: any[] = [];
     if (!size) {
-      toast.error("Select product size", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error("Select product size", {});
     } else {
       carts.push({ id, size, qnt, name, image, price, currency });
       setCartItems((prev: any) => [...prev, ...carts]);
-      toast.success("Product add to cart", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success("Product add to cart", toastStyle);
     }
   };
 
@@ -105,25 +113,39 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
- const handleDeleteCartItem=(id: string)=>{
-    setCartItems((prev: any)=> prev.filter((item: any)=> item.id !== id))
-    toast.success("Product has been deleted", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
- }
- 
- const handleOrder=(order: object) => {
-   console.log("🚀 ~ handleOrder ~ order:", order)
-  //  return <Navigate to={"/orders"}/>
-    
- }
-  
+  const handleDeleteCartItem = (id: string) => {
+    setCartItems((prev: any) => prev.filter((item: any) => item.id !== id));
+    toast.success("Product has been deleted", toastStyle);
+  };
+
+  const handleOrder = (formData: any, total: number) => {
+    if (!formData.first_name) {
+      toast.error("Please enter Name", toastStyle);
+    } else if (!formData.email) {
+      toast.error("Please enter Email", toastStyle);
+    } else if (!formData.address) {
+      toast.error("Please enter Address", toastStyle);
+    } else if (!formData.city) {
+      toast.error("Please enter City", toastStyle);
+    } else if (!formData.state) {
+      toast.error("Please enter State", toastStyle);
+    } else if (!formData.country) {
+      toast.error("Please enter Country", toastStyle);
+    } else if (!formData.phone_number || formData.phone_number.length <= 9) {
+      toast.error("Please enter a valid phone number", toastStyle);
+    } else {
+      setOrder({
+        cartItems,
+        ...formData,
+        currency,
+        total: total + delivery_fee,
+        paymentMethod,
+        date,
+      });
+      navigate("/orders");
+      toast.success("Order has been placed", toastStyle);
+    }
+  };
 
   return (
     <DataContext.Provider
@@ -145,9 +167,9 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
         handleDeleteCartItem,
         paymentMethod,
         setPaymentMethod,
-        setOrder,
+        // setOrder,
         order,
-        handleOrder
+        handleOrder,
       }}
     >
       {children}

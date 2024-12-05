@@ -17,7 +17,7 @@ const CartTotal = ({
   totalPrice: number;
   currency: string;
   delivery_fee: number;
-  onClick?: void;
+  onClick?: ()=>void;
   link?: string;
   label: string;
   isPlaceOrder: boolean;
@@ -59,14 +59,14 @@ const CartTotal = ({
         isPlaceOrder && <div className="flex flex-col sm:flex-row sm:items-center gap-1 w-full mb-6">
            {
             data.map((item)=>(
-              <button className="flex items-center gap-5 border border-gray-300 p-3 rounded-md" onClick={()=>setPaymentMethod(item.type)}>
+              <button className="flex items-center gap-2 lg:gap-3 xl:gap-5 border border-gray-300 p-3 rounded-md" onClick={()=>setPaymentMethod(item.type)}>
                 <div className={clsx("w-3 min-w-3 h-3 rounded-full border ", paymentMethod === item.type ? "bg-green-400 border-transparent": "bg-transparent border-gray-300")}>
                 </div>
                 {
-                  item.logo && <img src={item.logo} className="w-full object-fill max-w-[128px] h-5"/>
+                  item.logo && <img src={item.logo} className="w-full object-fill max-w-20 h-5"/>
                 }
                 {
-                  item.title && <p className="uppercase font-Roboto font-semibold text-sm text-gray-500">{item.title}</p>
+                  item.title && <p className="uppercase font-Roboto font-semibold text-xs text-nowrap lg:text-sm text-gray-500">{item.title}</p>
                 }
               </button>
             ))
@@ -78,7 +78,7 @@ const CartTotal = ({
         variant="primary"
         className="w-full text-nowrap text-center"
         link={link}
-        onClick={onClick || undefined}
+        onClick={onClick}
       />
     </div>
   );

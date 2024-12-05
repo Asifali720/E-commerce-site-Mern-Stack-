@@ -11,9 +11,9 @@ const TwoColumnHeroSection = () => {
       <img
         src={sideImage}
         alt=""
-        className="absolute top-0 right-0 w-full h-full -z-10 object-cover hidden md:block"
+        className="absolute top-0 right-0 w-full h-full -z-10 object-cover hidden sm:block"
       />
-      <div className="pt-10 lg:py-20 w-full md:max-w-[700px] relative z-30">
+      <div className="pt-10 lg:py-20 w-full sm:w-[500px] md:w-[600px] relative z-30">
         <h1 className="text-4xl md:text-7xl tracking-[-0.05em] font-Roboto text-black font-extrabold mb-6">
           FIND CLOTHES THAT MATCHES YOUR STYLE
         </h1>
@@ -44,7 +44,7 @@ const TwoColumnHeroSection = () => {
           </div>
         </div>
       </div>
-      <img src={sideImageMobile} alt="" className="w-full h-full object-cover md:hidden"/>
+      <img src={sideImageMobile} alt="" className="w-full h-full object-cover sm:hidden"/>
       </div>
       
     </section>

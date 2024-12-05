@@ -40,7 +40,7 @@ const Navbar = () => {
           <IoMdClose size={22} />
         </button>
       </div>
-      <div className="w-full max-w-[1440px]  bg-white mx-auto flex items-center justify-between md:gap-10 px-4 lg:px-10 py-5 xl:px-20 relative">
+      <div className="w-full max-w-[1440px] sm:gap-5 bg-white mx-auto flex items-center justify-between md:gap-10 px-4 lg:px-10 py-5 xl:px-20 relative">
         <div className="flex items-center gap-2">
          <button onClick={() => setMenu(!menu)} className="lg:hidden">
           {
@@ -100,8 +100,8 @@ const Navbar = () => {
              <CiSearch size={22} />
           </button>
           
-            <input type="text" onChange={handleSearch} name="" id="" className="bg-transparent ml-2 outline-none hidden md:block placeholder:text-zinc-500" placeholder="Search"/>
-            <div className={clsx("w-full absolute top-[70px] left-0 bg-[#f0f0f0] px-5 py-2", searchOpen ? "block md:hidden" : "hidden")}>
+            <input type="text" onChange={handleSearch} name="" id="" className="bg-transparent ml-2 outline-none hidden sm:block placeholder:text-zinc-500" placeholder="Search"/>
+            <div className={clsx("w-full absolute top-[70px] left-0 bg-[#f0f0f0] px-5 py-2", searchOpen ? "block sm:hidden" : "hidden")}>
             <input type="text" onChange={handleSearch} name="" id="" className="bg-white ml-2 outline-none rounded-full w-full px-3 py-1" placeholder="Search"/>
             </div>
         </div>

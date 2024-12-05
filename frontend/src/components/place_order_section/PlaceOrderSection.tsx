@@ -3,11 +3,9 @@ import CartTotal from "../cart_total/CartTotal";
 import { DataContext, DataProviderProps } from "../context/DataProvider";
 
 const PlaceOrderSection = () => {
-  const { delivery_fee, currency, cartItems, order, setOrder, handleOrder, paymentMethod } = useContext(
+  const { delivery_fee, currency, cartItems, handleOrder} = useContext(
     DataContext
   ) as DataProviderProps;
-
-  console.log("🚀 ~ PlaceOrderSection ~ paymentMethod:", paymentMethod)
 
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -27,25 +25,22 @@ const PlaceOrderSection = () => {
         [name]: value
      }))
   }
-
-  const date = new Date()
-  // console.log("🚀 ~ PlaceOrderSection ~ date:", date)
   
 
   useEffect(() => {
     updatePrice();
   }, [cartItems]);
 
-  useEffect(()=>{
-    setOrder({
-     ...cartItems,
-     ...formData,
-     paymentMethod,
-     totalPrice: totalPrice+ delivery_fee,
-     currency,
-     date
-    })
-  }, [])
+  // useEffect(()=>{
+  //   setOrder({
+  //    cartItems,
+  //    ...formData,
+  //    paymentMethod,
+  //    totalPrice: totalPrice + delivery_fee,
+  //    currency,
+  //    date
+  //   })
+  // }, [cartItems, setOrder])
 
   return (
     <section
@@ -132,9 +127,10 @@ const PlaceOrderSection = () => {
               />
             </div>
             <input
-              type="tel"
+              type="number"
               name="phone_number"
               placeholder="Phone number"
+              min={0-9}
               className="py-1 px-3 rounded-sm border border-gray-300 font-satoshi w-full"
               onChange={handleFormData}
               required
@@ -146,7 +142,7 @@ const PlaceOrderSection = () => {
           delivery_fee={delivery_fee}
           currency={currency}
           label="Place order"
-          onClick={handleOrder(order)}
+          onClick={()=>handleOrder(formData, totalPrice)}
           isPlaceOrder={true}
           classname="md:w-2/4"
         />

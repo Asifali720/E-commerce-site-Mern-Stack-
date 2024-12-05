@@ -4,11 +4,16 @@ import { MdDeleteSweep } from "react-icons/md";
 import CartTotal from "../cart_total/CartTotal";
 
 const CartSection = () => {
-  const { currency, cartItems, delivery_fee, handleUpdateQuantity, handleDeleteCartItem } =
-    useContext(DataContext) as DataProviderProps;
+  const {
+    currency,
+    cartItems,
+    delivery_fee,
+    handleUpdateQuantity,
+    handleDeleteCartItem,
+  } = useContext(DataContext) as DataProviderProps;
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  const updatePrice =() => {
+  const updatePrice = () => {
     const price = cartItems.reduce((acc: number, item: any) => {
       return acc + item.price * item.qnt;
     }, 0);
@@ -18,7 +23,6 @@ const CartSection = () => {
   useEffect(() => {
     updatePrice();
   }, [cartItems]);
-
 
   return (
     <section
@@ -53,7 +57,7 @@ const CartSection = () => {
                 </div>
               </div>
               <div className="h-[120px] flex flex-col items-end justify-between">
-                <button onClick={()=>handleDeleteCartItem(item.id)}>
+                <button onClick={() => handleDeleteCartItem(item.id)}>
                   <MdDeleteSweep size={25} color="red" />
                 </button>
                 <div className="py-1 px-3 bg-gray-200 flex items-center gap-3 md:gap-7 rounded-full">
@@ -75,42 +79,15 @@ const CartSection = () => {
             </div>
           ))}
         </div>
-        {/* <div className="w-full md:w-[40%] p-6 rounded-2xl border border-gray-300">
-          <h3 className="font-satoshi text-2xl font-bold mb-4">
-            Order Summary
-          </h3>
-          <div className="w-full flex justify-between">
-            <p className="text-sm text-gray-500 mb-4">Subtotal</p>
-            <span className="font-satoshi font-bold">
-              {currency}
-              {totalPrice}
-            </span>
-          </div>
-          <div className="w-full flex justify-between border-b border-b-gray-300">
-            <p className="text-sm text-gray-500 mb-4">Delivery fee</p>
-            <span className="font-satoshi font-bold">
-              {currency}
-              {delivery_fee}
-            </span>
-          </div>
-
-          <div className="w-full flex justify-between mt-4">
-            <p className="text-sm text-black font-satoshi font-medium mb-4">
-              Total
-            </p>
-            <span className="font-satoshi font-bold">
-              {currency}
-              {totalPrice + delivery_fee}
-            </span>
-          </div>
-          <Button
-            label="Go to Checkout"
-            variant="primary"
-            className="w-full text-nowrap text-center"
-            link="/place-order"
-          />
-        </div> */}
-        <CartTotal totalPrice={totalPrice} delivery_fee={delivery_fee} currency={currency} label="Go to Checkout" link="/place-order" isPlaceOrder={false} classname="md:w-[40%]"/>
+        <CartTotal
+          totalPrice={totalPrice}
+          delivery_fee={delivery_fee}
+          currency={currency}
+          label="Go to Checkout"
+          link="/place-order"
+          isPlaceOrder={false}
+          classname="md:w-[40%]"
+        />
       </div>
     </section>
   );
