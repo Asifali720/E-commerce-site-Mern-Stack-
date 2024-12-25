@@ -4,6 +4,7 @@ const connectDB = require("./config/mongoDb");
 require("dotenv").config();
 const connectCloudinary = require("./config/coludinaryConnect");
 const userRouter = require("./routes/user.routes");
+const productRouter = require("./routes/product.routes");
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ connectCloudinary();
 const port = process.env.PORT;
 
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter);
 
 app.get("/", (req, res, next) => {
   res.send("Hi kese ho");

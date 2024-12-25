@@ -1,13 +1,12 @@
-import React from 'react'
-import Layout from '../components/Layout'
-import CartSection from '../components/cart_section/CartSection'
+import Layout from "../components/Layout";
+import CartSection from "../components/cart_section/CartSection";
 
 const Cart = () => {
   return (
     <Layout>
-      <CartSection/>
+      <CartSection />
     </Layout>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

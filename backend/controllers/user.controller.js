@@ -4,7 +4,7 @@ const validator = require("validator");
 const jwt = require("jsonwebtoken");
 
 const createToken = (id) => {
-  jwt.sign(id, process.env.SECRET_KEY);
+  return jwt.sign({ id: id }, process.env.SECRET_KEY);
 };
 
 const loginUser = async (req, res) => {
@@ -18,7 +18,7 @@ const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       const token = createToken(user._id);
-      res.json({ success: true, token, message: "login successfully" });
+      res.json({ success: true, token: token, message: "login successfully" });
     } else {
       res.json({ success: false, message: "incorrect password" });
     }

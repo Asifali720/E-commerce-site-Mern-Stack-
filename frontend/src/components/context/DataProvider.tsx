@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { products } from "../../data/assets/frontend_assets/assets.ts";
 import { toast, ToastOptions } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export interface DataProviderProps {
   products: Array<any>;
