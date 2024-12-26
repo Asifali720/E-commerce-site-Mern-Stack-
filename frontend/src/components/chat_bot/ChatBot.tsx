@@ -3,7 +3,6 @@ import { IoMdSend } from "react-icons/io";
 import AiRobotSvg from "../AiRobotSvg";
 import clsx from "clsx";
 import { IoIosExit } from "react-icons/io";
-import { OpenAI } from "openai";
 
 const ChatBot = () => {
   const [openChat, setOpenChat] = React.useState<boolean>(false);
