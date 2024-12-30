@@ -17,7 +17,7 @@ app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 
 app.get("/", (req, res, next) => {
-  res.send("Hi kese ho");
+  res.send("Hi");
 });
 
 app.listen(port, console.log(`app is running on ${port}`));
