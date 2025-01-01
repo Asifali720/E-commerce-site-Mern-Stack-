@@ -31,6 +31,8 @@ export interface DataProviderProps {
   order: any;
   // setOrder: React.Dispatch<React.SetStateAction<object>>;
   handleOrder: (formData: object, total: number) => void;
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ToastStyleProp extends ToastOptions {
@@ -58,6 +60,9 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
   });
   const navigate = useNavigate();
   const date = new Date();
+
+  const getToken = localStorage.getItem("token");
+  const [token, setToken] = React.useState<string>(getToken ? getToken : "");
 
   const toastStyle: ToastStyleProp = {
     position: "top-center",
@@ -170,6 +175,8 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
         // setOrder,
         order,
         handleOrder,
+        token,
+        setToken,
       }}
     >
       {children}

@@ -23,7 +23,7 @@ const PagesRoutes = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/collection" element={<Collections />} />
         <Route path="/*" element={<ErrorPage />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/admin/*" element={<AdminPanel />} />
       </Routes>
     </div>
   );

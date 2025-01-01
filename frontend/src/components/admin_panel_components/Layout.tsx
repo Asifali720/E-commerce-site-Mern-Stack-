@@ -11,8 +11,10 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Navbar />
-      <Sidbar />
-      {children}
+      <div className="flex">
+        <Sidbar />
+        {children}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 // import React from "react";
 
 const Sidbar = () => {
-  return <div>Sidbar</div>;
+  return <div className="w-full md:w-[20%]">Sidbar</div>;
 };
 
 export default Sidbar;
