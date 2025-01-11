@@ -7,8 +7,8 @@ const Navbar = () => {
   const { setToken } = React.useContext(DataContext) as DataProviderProps;
 
   return (
-    <nav className="w-full flex items-center justify-between px-4 py-5 lg:px-10">
-      <img src={logo} alt="" className="w-[126px] md:w-[250px]" />
+    <nav className="w-full flex items-center justify-between px-4 py-4 lg:px-10 shadow-md">
+      <img src={logo} alt="" className="w-20 md:w-[180px]" />
       <Button label="Logout" variant="primary" onClick={() => setToken("")} />
     </nav>
   );

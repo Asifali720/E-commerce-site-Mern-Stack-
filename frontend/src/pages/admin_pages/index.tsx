@@ -5,7 +5,7 @@ import {
   DataContext,
   DataProviderProps,
 } from "../../components/context/DataProvider";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Add from "./Add";
 import List from "./List";
 import Order from "./Order";
