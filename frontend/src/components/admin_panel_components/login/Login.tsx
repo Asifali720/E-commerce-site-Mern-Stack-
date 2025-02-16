@@ -34,7 +34,7 @@ const Login = ({
       });
       setToken(responsedata.token);
     } catch (err: any | string) {
-      console.log("🚀 ~ handleLogin ~ err:", err);
+      console.log("🚀 ~ handleLogin ~ err:", err.message);
     }
   };
   return (

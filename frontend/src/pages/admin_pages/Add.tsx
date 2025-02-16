@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoCloudUpload } from "react-icons/io5";
 import Button from "../../components/button/Button";
 import clsx from "clsx";
+import { addProduct, ProductProps } from "../../api/admin_api/addProduct";
+import  { DataContext, DataProviderProps, toastStyle } from "../../components/context/DataProvider";
+import { toast } from "react-toastify";
+import Loader from "../../components/loading/Loader";
 
 const Add = () => {
-  const [image1, setImage1] = React.useState<File | undefined>();
-
-  const [image2, setImage2] = React.useState<File | undefined>();
-  const [image3, setImage3] = React.useState<File | undefined>();
+  const {token} = useContext(DataContext) as DataProviderProps
+  const [image1, setImage1] = React.useState<File | any>();
+  const [image2, setImage2] = React.useState<File | any>();
+  const [image3, setImage3] = React.useState<File | any>();
   const [name, setName] = React.useState<string>("");
   const [description, setDescripttion] = React.useState<string>("");
   const [category, setCategory] = React.useState<string>("men");
@@ -15,11 +19,11 @@ const Add = () => {
   const [price, setPrice] = React.useState<string>("");
   const [sizes, setSizes] = React.useState<string[]>([]);
   const [bestSelling, setBestSelling] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   const handleSubmitProduct = async () => {
     try {
-      console.log("Submitting product...");
-
+      setIsLoading(true)
       const formData = new FormData();
       formData.append("name", name);
       formData.append("description", description);
@@ -32,16 +36,19 @@ const Add = () => {
       image2 && formData.append("image2", image2);
       image3 && formData.append("image3", image3);
 
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-      }
-      console.log("🚀 ~ handleSubmitProduct ~ formData:", formData);
+    const response = await addProduct(formData as ProductProps, token)
+   setIsLoading(false)
+    toast.success(response?.data?.message, toastStyle)
+    
     } catch (err: any | string) {
       console.log(err.message);
+      toast.error(err?.message, toastStyle)
     }
   };
 
   return (
+    <>
+    {isLoading ? <Loader/>: ""}
     <div className="pl-4 lg:pl-10 xl:pl-20 py-10">
       <h2 className="font-Roboto text-xl uppercase tracking-[-0.05em] font-extrabold mb-4">
         Upload Image
@@ -314,6 +321,8 @@ const Add = () => {
         onClick={handleSubmitProduct}
       />
     </div>
+    </>
+    
   );
 };
 

@@ -47,6 +47,17 @@ interface ToastStyleProp extends ToastOptions {
 
 export const DataContext = createContext<DataProviderProps | null>(null);
 
+export const toastStyle: ToastStyleProp = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
+
 const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const currency = "$";
   const delivery_fee = 10;
@@ -64,16 +75,7 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const getToken = localStorage.getItem("token");
   const [token, setToken] = React.useState<string>(getToken ? getToken : "");
 
-  const toastStyle: ToastStyleProp = {
-    position: "top-center",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  };
-
+ 
   const addToCart = (
     id: string,
     size: string,

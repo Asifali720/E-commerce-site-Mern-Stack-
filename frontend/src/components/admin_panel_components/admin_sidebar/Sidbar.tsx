@@ -14,7 +14,7 @@ const Sidbar = () => {
   }, [location]);
 
   return (
-    <div className="w-full md:w-[20%] shadow-xl h-screen pt-10">
+    <div className="w-full md:w-[20%] shadow-xl sidebar_screen pt-10">
       <ul className="float-end flex flex-col gap-4">
         <li>
           <Link

@@ -38,7 +38,7 @@ const addProduct = async (req, res) => {
       image: [...imageUri],
     });
     const product = await newProducts.save();
-    res.json(product);
+    res.json({sucess:true, message: "Product successfully add", product: product});
   } catch (error) {
     console.log("🚀 ~ addProduct ~ error:", error);
     res.json({ success: false, message: error.message });

@@ -1,5 +1,7 @@
 const List = () => {
-  return <div>List</div>;
+  return <div>
+     <h1  className="font-Roboto font-extrabold">Product List</h1>
+  </div>;
 };
 
 export default List;
