@@ -5,7 +5,6 @@ require("dotenv").config();
 const connectCloudinary = require("./config/coludinaryConnect");
 const userRouter = require("./routes/user.routes");
 const productRouter = require("./routes/product.routes");
-const functions = require('firebase-functions');
 
 const app = express();
 app.use(cors());
@@ -22,4 +21,3 @@ app.get("/", (req, res, next) => {
 });
 
 app.listen(port, console.log(`app is running on ${port}`));
-exports.app = functions.https.onRequest(app);
