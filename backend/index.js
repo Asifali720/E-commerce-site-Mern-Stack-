@@ -9,6 +9,7 @@ const productRouter = require("./routes/product.routes");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 connectDB();
 connectCloudinary();
 const port = process.env.PORT;
@@ -17,7 +18,9 @@ app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 
 app.get("/", (req, res, next) => {
-  res.send("Hi");
+  res.json({success: true, message: "server is running"});
 });
 
 app.listen(port, console.log(`app is running on ${port}`));
+
+module.exports = app;
