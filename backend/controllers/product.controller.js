@@ -69,8 +69,12 @@ const singleProduct = async (req, res) => {
 
 const removeProduct = async (req, res) => {
   try {
-    await productModel.findByIdAndDelete(req.body.id);
-    res.json({ status: 200, message: "product removed" });
+    const  id  = req.query.id;
+    if(!id){
+      res.json({status:500, error: "id required"})
+    }
+    const removedProduct = await productModel.findByIdAndDelete(id);
+    res.json({ status: 200, message: "product removed", product: removedProduct });
   } catch (err) {
     console.log(err.message);
   }
