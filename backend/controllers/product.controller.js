@@ -13,15 +13,17 @@ const addProduct = async (req, res) => {
       bestSeller,
     } = req.body;
 
-    const img1 = req.files.image1[0] && req.files.image1[0];
-    const img2 = req.files.image2[0] && req.files.image2[0];
-    const img3 = req.files.image3[0] && req.files.image3[0];
+    const img1 = req.files?.image1?.[0];
+    const img2 = req.files?.image2?.[0];
+    const img3 = req.files?.image3?.[0];
 
-    const images = [img1, img2, img3].filter((item) => item != undefined);
+    const images = [img1, img2, img3].filter((item) => item);
 
+  
     const imageUri = await Promise.all(
       images.map(async (item) => {
-        const result = await cloudinary.uploader.upload(item.path);
+        const base64Image = item.buffer.toString("base64");
+        const result = await cloudinary.uploader.upload(`data:image/png;base64,${base64Image}`);
         return result.secure_url;
       })
     );
@@ -37,13 +39,15 @@ const addProduct = async (req, res) => {
       date: Date.now(),
       image: [...imageUri],
     });
+
     const product = await newProducts.save();
-    res.json({sucess:true, message: "Product successfully add", product: product});
+    res.json({ success: true, message: "Product successfully added", product });
   } catch (error) {
     console.log("🚀 ~ addProduct ~ error:", error);
-    res.json({ success: false, message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
+
 
 const productList = async (req, res) => {
   try {
