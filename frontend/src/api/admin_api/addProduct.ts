@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export type ProductProps = {
+    _id?: string
     name?: string
     description?: string
     price?: string

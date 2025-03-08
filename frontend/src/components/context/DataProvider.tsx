@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import { products } from "../../data/assets/frontend_assets/assets.ts";
 import { toast, ToastOptions } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { ProductProps } from "../../api/admin_api/addProduct.ts";
 
 export interface DataProviderProps {
   products: Array<any>;
@@ -33,6 +34,8 @@ export interface DataProviderProps {
   handleOrder: (formData: object, total: number) => void;
   token: string;
   setToken: React.Dispatch<React.SetStateAction<string>>;
+  realProducts: ProductProps[];
+  setRealProducts: React.Dispatch<React.SetStateAction<ProductProps[]>>;
 }
 
 interface ToastStyleProp extends ToastOptions {
@@ -66,6 +69,7 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = React.useState<any>([]);
   const [quantity, setQuantity] = React.useState<number>(1);
   const [paymentMethod, setPaymentMethod] = React.useState<string>("cod");
+  const [realProducts, setRealProducts] = React.useState<ProductProps[]>([]);
   const [order, setOrder] = React.useState<any>({
     cartItems: "",
   });
@@ -179,6 +183,8 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
         handleOrder,
         token,
         setToken,
+        realProducts,
+        setRealProducts,
       }}
     >
       {children}
