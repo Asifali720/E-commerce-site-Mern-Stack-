@@ -94,7 +94,7 @@ const columns = [
   return <div className="pl-4 lg:pl-10 xl:pl-20 py-10 w-full pr-10">
      <h1 className="font-Roboto text-3xl uppercase tracking-[-0.05em] font-extrabold mb-4">My Product</h1>
 <div className="overflow-x-auto">
-<table className="w-full min-w-full" style={{ width: "100%", borderCollapse: "collapse" }}>
+<table className="w-full min-w-full border" style={{ width: "100%", borderCollapse: "collapse" }}>
       <thead >
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id} >
@@ -106,7 +106,7 @@ const columns = [
           </tr>
         ))}
       </thead>
-      <tbody >
+      <tbody>
         {
           isLoading ? (
             [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map((_, i)=>{
@@ -124,7 +124,7 @@ const columns = [
             })
           ): (
             table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
+              <tr key={row.id} className="border-b">
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} style={{ padding: "8px" }} className="text-base text-zinc-950 font-Roboto font-medium">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
