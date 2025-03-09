@@ -11,7 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Navbar />
-      <div className="flex">
+      <div className="flex relative w-full">
         <Sidbar />
         {children}
       </div>
