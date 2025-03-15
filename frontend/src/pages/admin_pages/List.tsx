@@ -2,7 +2,7 @@ import { listProduct } from "../../api/admin_api/listProduct";
 import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import { DataContext, DataProviderProps, toastStyle } from "../../components/context/DataProvider";
-import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender} from "@tanstack/react-table";
 import { RiFileEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import { ProductProps } from "../../api/admin_api/addProduct";
@@ -123,7 +123,7 @@ const columns = [
               )
             })
           ): (
-            table.getRowModel().rows.map((row) => (
+            [...table.getRowModel().rows].sort((a: any, b: any)=> new Date(b.original.date).getTime() - new Date(a.original.date).getTime()).map((row) => (
               <tr key={row.id} className="border-b">
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} style={{ padding: "8px" }} className="text-base text-zinc-950 font-Roboto font-medium">
