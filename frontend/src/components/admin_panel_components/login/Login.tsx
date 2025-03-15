@@ -1,6 +1,8 @@
 import React from "react";
 import { adminLogin } from "../../../api/admin_api/login";
 import Button from "../../button/Button";
+import { toast } from "react-toastify";
+import { toastStyle } from "../../context/DataProvider";
 
 interface FormDataProps {
   email: string;
@@ -16,7 +18,6 @@ const Login = ({
     email: "",
     password: "",
   });
-  console.log("🚀 ~ formData:", formData);
 
   const handleFormInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,8 +34,10 @@ const Login = ({
         password: formData.password,
       });
       setToken(responsedata.token);
+      toast.success("Login Successfully", toastStyle);
     } catch (err: any | string) {
       console.log("🚀 ~ handleLogin ~ err:", err.message);
+      toast.error(err.message, toastStyle);
     }
   };
   return (
