@@ -11,7 +11,6 @@ const CollectionSection = () => {
     const [sortByRange, setSortByRange] = React.useState<String>('relavent')
     const [subCategory , setSubCategory] = React.useState<any[]>([])
     const {products, currency, search} = React.useContext(DataContext) as DataProviderProps
-    console.log("🚀 ~ CollectionSection ~ search:", search)
 
 
     const handleCategory = (e: any) => {

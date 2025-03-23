@@ -19,7 +19,6 @@ const AdminPanel = () => {
     localStorage.setItem("token", token);
   }, [token]);
 
-  console.log(token, ">>> token")
 
   return (
     <>
